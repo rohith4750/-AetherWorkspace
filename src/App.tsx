@@ -12,6 +12,7 @@ import type { Widget, DashboardApp, GlobalParams } from './types';
 import Dashboard from './components/Dashboard';
 import WidgetLibrary from './components/WidgetLibrary';
 import AIAgent from './components/AIAgent';
+import FullPageCompiler from './components/FullPageCompiler';
 import './App.css';
 
 // Definition of prebuilt App templates (Workspaces)
@@ -423,26 +424,36 @@ function App() {
 
       {/* Main Workspace Frame */}
       <div className="workspace-panel">
-        <Dashboard
-          appName={activeApp.name}
-          appDescription={activeApp.description}
-          widgets={widgets}
-          globalParams={globalParams}
-          onDeleteWidget={handleDeleteWidget}
-          onToggleLink={handleToggleLink}
-          onUpdateParams={handleUpdateParams}
-          onReorderWidgets={handleReorderWidgets}
-          onUpdateWidgetSpan={handleUpdateWidgetSpan}
-          onUpdateWidgetContent={handleUpdateWidgetContent}
-          onOpenLibrary={() => setIsLibraryOpen(true)}
-        />
+        {activeApp.id === 'dev_sandbox' ? (
+          <FullPageCompiler
+            initialTicker={globalParams.ticker}
+            initialDateRange={globalParams.dateRange}
+            onUpdateParams={handleUpdateParams}
+          />
+        ) : (
+          <>
+            <Dashboard
+              appName={activeApp.name}
+              appDescription={activeApp.description}
+              widgets={widgets}
+              globalParams={globalParams}
+              onDeleteWidget={handleDeleteWidget}
+              onToggleLink={handleToggleLink}
+              onUpdateParams={handleUpdateParams}
+              onReorderWidgets={handleReorderWidgets}
+              onUpdateWidgetSpan={handleUpdateWidgetSpan}
+              onUpdateWidgetContent={handleUpdateWidgetContent}
+              onOpenLibrary={() => setIsLibraryOpen(true)}
+            />
 
-        <AIAgent
-          activeWidgets={widgets}
-          globalParams={globalParams}
-          suggestedPrompts={activeApp.suggestedPrompts}
-          onAddWidget={handleAddAIWidget}
-        />
+            <AIAgent
+              activeWidgets={widgets}
+              globalParams={globalParams}
+              suggestedPrompts={activeApp.suggestedPrompts}
+              onAddWidget={handleAddAIWidget}
+            />
+          </>
+        )}
       </div>
 
       {/* Slide-out Widget Catalog Overlay */}
