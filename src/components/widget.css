@@ -1,0 +1,219 @@
+/* Spreadsheet Tables styling */
+.widget-table-container {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--border-color);
+}
+
+.widget-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  table-layout: fixed; /* Fix layout to enforce column widths */
+}
+
+.widget-table th {
+  position: sticky;
+  top: 0;
+  background: var(--bg-tertiary);
+  padding: 8px 10px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  border-bottom: 1.5px solid var(--border-color);
+  z-index: 1;
+  font-size: 0.75rem;
+}
+
+.widget-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Force column widths to prevent squishing */
+.widget-table th:nth-child(1),
+.widget-table td:nth-child(1) {
+  width: 48%;
+}
+
+.widget-table th:nth-child(2),
+.widget-table td:nth-child(2) {
+  width: 28%;
+}
+
+.widget-table th:nth-child(3),
+.widget-table td:nth-child(3) {
+  width: 24%;
+}
+
+.widget-table tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* YoY indicators */
+.yoy-indicator {
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 4px;
+  padding: 2px 4px;
+  font-size: 0.7rem;
+}
+
+.yoy-indicator.positive {
+  color: var(--color-success);
+  background: var(--color-success-glow);
+}
+
+.yoy-indicator.negative {
+  color: var(--color-danger);
+  background: var(--color-danger-glow);
+}
+
+.yoy-indicator.neutral {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* News sentiment items styling */
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.news-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.news-card:hover {
+  border-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.news-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.news-meta-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+}
+
+.news-title {
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+/* Sentiment badges */
+.sentiment-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+
+.sentiment-badge.bullish {
+  background: var(--color-success-glow);
+  color: var(--color-success);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.sentiment-badge.bearish {
+  background: var(--color-danger-glow);
+  color: var(--color-danger);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+.sentiment-badge.neutral {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Text note input */
+.text-note-area {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  resize: none;
+  outline: none;
+}
+
+/* Chart Tooltips */
+.custom-tooltip {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 10px 12px;
+  box-shadow: var(--shadow-lg);
+}
+
+.tooltip-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+  font-family: var(--font-display);
+}
+
+.tooltip-value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: var(--font-sans);
+}
+
+/* AI generated layout spacing */
+.ai-widget-content {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  overflow-y: auto;
+  height: 100%;
+  padding-right: 4px;
+}
+
+.ai-widget-content h3 {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+  color: var(--primary);
+}
+
+.ai-widget-content p {
+  color: var(--text-secondary);
+  margin-bottom: 12px;
+}

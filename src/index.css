@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  /* OBSIDIAN CYBERPUNK PALETTE */
+  --bg-primary: #05070c;
+  --bg-secondary: #0a0d14;
+  --bg-tertiary: #0e121b;
+  --bg-card: rgba(14, 20, 32, 0.6);
+  --bg-glass: rgba(8, 12, 20, 0.75);
+  --bg-glass-hover: rgba(16, 24, 38, 0.85);
+
+  /* Primary Neon Cyan */
+  --primary: #00f2fe;
+  --primary-hover: #38bdf8;
+  --primary-glow: rgba(0, 242, 254, 0.15);
+  --primary-rgb: 0, 242, 254;
+
+  /* Accent High-Tech Violet */
+  --accent: #8b5cf6;
+  --accent-hover: #a78bfa;
+  --accent-glow: rgba(139, 92, 246, 0.15);
+  --accent-rgb: 139, 92, 246;
+
+  /* Grid Tints & Borders */
+  --border-color: rgba(255, 255, 255, 0.05);
+  --border-active: rgba(0, 242, 254, 0.35);
+  --border-glass: rgba(255, 255, 255, 0.06);
+
+  /* Typography Colors */
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+
+  /* Signals */
+  --color-success: #10b981;
+  --color-success-glow: rgba(16, 185, 129, 0.12);
+  --color-danger: #f43f5e;
+  --color-danger-glow: rgba(244, 63, 94, 0.12);
+  --color-warning: #fbbf24;
+  --color-warning-glow: rgba(251, 191, 36, 0.12);
+
+  /* Font Families */
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Premium Box Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.04);
+  --shadow-glow: 0 0 20px rgba(0, 242, 254, 0.12);
+  --shadow-glow-accent: 0 0 20px rgba(139, 92, 246, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-primary);
+  background-image: 
+    radial-gradient(circle at 40% 30%, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(0, 242, 254, 0.03) 0%, transparent 50%),
+    radial-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 24px 24px;
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Sleek Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 242, 254, 0.3);
+}
+
+/* Premium Obsidian Glass Card */
+.glass-panel {
+  background: var(--bg-card);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 14px;
+  box-shadow: var(--shadow-lg);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(0, 242, 254, 0.2);
+  background: var(--bg-glass-hover);
+  box-shadow: 
+    0 20px 40px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(0, 242, 254, 0.04),
+    inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  transform: translateY(-2px);
+}
+
+/* Glowing Neon Button style */
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  color: #05070c;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 20px rgba(0, 242, 254, 0.4),
+    0 0 15px rgba(139, 92, 246, 0.3);
+  filter: brightness(1.05);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-glass);
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: var(--text-primary);
+}
+
+.btn-icon {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  width: 28px;
+  height: 28px;
+  transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.glow-text {
+  text-shadow: 0 0 12px rgba(0, 242, 254, 0.3);
+}
+
+/* Base animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.8; box-shadow: 0 0 8px rgba(0, 242, 254, 0.1); }
+  50% { opacity: 1; box-shadow: 0 0 16px rgba(0, 242, 254, 0.3); }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2.5s infinite ease-in-out;
+}
