@@ -11,7 +11,7 @@ import {
   DollarSign
 } from 'lucide-react';
 import type { Widget, GlobalParams } from '../types';
-import WidgetComponent from './Widget';
+import WidgetComponent from './Widget.tsx';
 import './dashboard.css';
 
 interface DashboardProps {
