@@ -51,6 +51,12 @@ const AVAILABLE_WIDGETS: LibraryItem[] = [
     category: 'General',
     title: 'Scratch Note Pad',
     description: 'Editable text area canvas designed for notes, investment theses, ideas, and workspace commentary.'
+  },
+  {
+    type: 'code_ide',
+    category: 'Developer',
+    title: 'Developer Sandbox IDE',
+    description: 'Interactive JavaScript and HTML editor. Write custom scripts to process metrics, analyze chartData, and compile visuals.'
   }
 ];
 
@@ -94,7 +100,7 @@ const WidgetLibrary: React.FC<WidgetLibraryProps> = ({ onClose, onAddWidget }) =
 
         {/* Tab Selection Filter */}
         <div className="library-tabs">
-          {(['All', 'Equity', 'Economy', 'Crypto', 'General'] as const).map((tab) => (
+          {(['All', 'Equity', 'Economy', 'Crypto', 'Developer', 'General'] as const).map((tab) => (
             <button
               key={tab}
               className={`library-tab ${activeTab === tab ? 'active' : ''}`}

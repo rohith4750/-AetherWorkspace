@@ -21,6 +21,7 @@ import {
   generateMacroIndicatorsData 
 } from '../utils/mockData';
 import './widget.css';
+import IDEWidget from './IDEWidget';
 
 interface WidgetComponentProps {
   widget: Widget;
@@ -374,6 +375,16 @@ const WidgetComponent: React.FC<WidgetComponentProps> = ({
             <div>Empty AI Analysis Artifact</div>
           )}
         </div>
+      );
+    }
+
+    case 'code_ide': {
+      return (
+        <IDEWidget
+          widget={widget}
+          globalParams={globalParams}
+          onUpdateContent={onUpdateContent}
+        />
       );
     }
 

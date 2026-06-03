@@ -5,7 +5,8 @@ import {
   Coins, 
   Layers, 
   ExternalLink,
-  ChevronRight
+  ChevronRight,
+  Code
 } from 'lucide-react';
 import type { Widget, DashboardApp, GlobalParams } from './types';
 import Dashboard from './components/Dashboard';
@@ -136,6 +137,95 @@ const PREBUILT_APPS: DashboardApp[] = [
       'Create BTC position note'
     ],
     systemInstruction: 'You are a cryptocurrency portfolio manager analyzing volatility, block metrics, and news sentiment.'
+  },
+  {
+    id: 'dev_sandbox',
+    name: 'Developer Sandbox',
+    description: 'Write custom calculations',
+    icon: 'Code',
+    defaultTicker: 'TSLA',
+    defaultDateRange: '3M',
+    widgets: [
+      {
+        id: 'widget_ide_init',
+        title: 'Developer Sandbox IDE',
+        description: 'Live JavaScript compiler & widget renderer',
+        type: 'code_ide',
+        category: 'Developer',
+        isLinked: true,
+        customData: { span: 'span-12', language: 'javascript' },
+        customContent: [
+          '// Aether Live JS Sandbox. Try running this script!',
+          'console.log("Initializing Sandbox Environment...");',
+          'console.log("Active Ticker: " + ticker);',
+          'console.log("Active Date Range: " + dateRange);',
+          '',
+          '// Calculate 5-period Simple Moving Average (SMA) from historical chartData',
+          'const prices = chartData.map(d => d.price);',
+          'console.log("Analyzing last " + prices.length + " price data points.");',
+          '',
+          'const sma = [];',
+          'for (let i = 0; i < prices.length; i++) {',
+          '  if (i < 4) {',
+          '    sma.push(null);',
+          '  } else {',
+          '    const sum = prices.slice(i - 4, i + 1).reduce((sum, p) => sum + p, 0);',
+          '    sma.push(sum / 5);',
+          '  }',
+          '}',
+          '',
+          'const lastPrice = prices[prices.length - 1] || 0;',
+          'const lastSMA = sma[sma.length - 1] || 0;',
+          'const diff = lastPrice - lastSMA;',
+          'const percentDiff = (diff / lastSMA) * 100;',
+          '',
+          'console.log("Current Price: $" + lastPrice);',
+          'console.log("5-Day Moving Average: $" + lastSMA.toFixed(2));',
+          'console.log("Deviation: " + (percentDiff >= 0 ? "+" : "") + percentDiff.toFixed(2) + "%");',
+          '',
+          '// Return custom HTML markup to render directly in the UI!',
+          'return `',
+          '  <div style="font-family: var(--font-sans); padding: 12px; display: flex; flex-direction: column; gap: 10px;">',
+          '    <div style="display: flex; justify-content: space-between; align-items: center;">',
+          '      <h3 style="color: var(--primary); margin: 0; font-size: 1rem;">${ticker} Moving Average Strategy</h3>',
+          '      <span style="font-size: 0.7rem; color: var(--text-muted); background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px;">SMA(5) Indicator</span>',
+          '    </div>',
+          '    ',
+          '    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 5px;">',
+          '      <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 8px; border-radius: 6px;">',
+          '        <div style="font-size: 0.65rem; color: var(--text-muted); margin-bottom: 2px;">Asset Price</div>',
+          '        <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-primary);">${lastPrice.toLocaleString()}</div>',
+          '      </div>',
+          '      <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 8px; border-radius: 6px;">',
+          '        <div style="font-size: 0.65rem; color: var(--text-muted); margin-bottom: 2px;">5-Day SMA</div>',
+          '        <div style="font-size: 0.95rem; font-weight: 700; color: var(--accent);">${lastSMA.toFixed(2)}</div>',
+          '      </div>',
+          '      <div style="background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); padding: 8px; border-radius: 6px;">',
+          '        <div style="font-size: 0.65rem; color: var(--text-muted); margin-bottom: 2px;">Signal</div>',
+          '        <div style="font-size: 0.95rem; font-weight: 700; color: ${percentDiff >= 0 ? \'var(--color-success)\' : \'var(--color-danger)\'};">',
+          '          ${percentDiff >= 0 ? \'BULLISH\' : \'BEARISH\'}',
+          '        </div>',
+          '      </div>',
+          '    </div>',
+          '',
+          '    <div style="font-size: 0.75rem; color: var(--text-secondary); line-height: 1.4; border-top: 1px solid var(--border-color); padding-top: 8px; margin-top: 4px;">',
+          '      Ticker <strong>${ticker}</strong> is trading at ',
+          '      <span style="color: ${percentDiff >= 0 ? \'var(--color-success)\' : \'var(--color-danger)\'}; font-weight: 600;">',
+          '        ${Math.abs(percentDiff).toFixed(2)}% ${percentDiff >= 0 ? \'above\' : \'below\'}',
+          '      </span> ',
+          '      its 5-period moving average.',
+          '    </div>',
+          '  </div>',
+          '`;'
+        ].join('\n')
+      }
+    ],
+    suggestedPrompts: [
+      'Calculate moving averages for TSLA',
+      'Filter TSLA news in Javascript',
+      'Build custom indicators in sandbox'
+    ],
+    systemInstruction: 'You are an advanced programming assistant specializing in scripting financial analytics and custom views.'
   },
   {
     id: 'custom',
@@ -285,6 +375,7 @@ function App() {
       case 'TrendingUp': return <TrendingUp size={16} className="nav-item-icon" />;
       case 'Globe': return <Globe size={16} className="nav-item-icon" />;
       case 'Coins': return <Coins size={16} className="nav-item-icon" />;
+      case 'Code': return <Code size={16} className="nav-item-icon" />;
       default: return <Layers size={16} className="nav-item-icon" />;
     }
   };
